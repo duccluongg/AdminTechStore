@@ -31,6 +31,22 @@ textarea {
   background-color: #f7f7f7;
   margin-bottom: 15px;
 }
+.textAreaStyle1 {
+  width: 32%;
+  height: auto;
+  border-bottom: 1px solid rgb(118, 118, 118);
+  border-radius: 2px;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  margin-bottom: 15px;
+}
+.boxCategory {
+  width: auto;
+  height: auto;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+}
 .formEdit {
   width: 60%;
   padding: 20px 25px;
@@ -38,9 +54,28 @@ textarea {
 }
 .imgProduct {
   width: 13%;
+  display: flex;
+  flex-direction: row;
 }
 .imgProduct img {
   padding: 0px;
   width: 100%;
   border: 1px solid #e5e7eb;
+  margin-right: 10px;
+}
+.textField label {
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+.nameProduct div {
+  font-size: 11px;
+}
+.button {
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px 0px;
+}
+.btn {
+  margin-left: 20px;
 }

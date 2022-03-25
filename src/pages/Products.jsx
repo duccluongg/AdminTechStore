@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from './Product.module.css';
+import styles from './Products.module.css';
 import FormatCash from '../utils/FormatCash';
 import queryString from 'query-string';
 import Box from '@mui/material/Box';
@@ -9,14 +9,16 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import PulseLoader from 'react-spinners/PulseLoader';
+import { useHistory } from 'react-router-dom';
 
 const Products = () => {
+  const history = useHistory();
   const [product, setProduct] = useState([]);
   const [category, setCategory] = useState([]);
   const [brand, setBrand] = useState([]);
   const [brandId, setBrandId] = useState('');
-  const [loading, setLoading] = useState(false);
   const [categoryId, setCategoryId] = useState('');
+  const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({
     page_size: 20,
     page: 1,
@@ -36,6 +38,7 @@ const Products = () => {
         console.log(err);
       });
   }, [categoryId, brandId]);
+  console.log(product);
 
   useEffect(() => {
     const getBrandApi = `https://yshuynh.pythonanywhere.com/api/categories`;
@@ -117,11 +120,7 @@ const Products = () => {
               </div>
             ) : (
               product?.map((item) => (
-                <div
-                  to={`/productDetail/${item.id}`}
-                  key={item.id}
-                  className={styles.grid__column24}
-                >
+                <div key={item.id} className={styles.grid__column24}>
                   <div className={styles.home__productitems}>
                     <div
                       className={styles.home__productitemsimg}
@@ -138,7 +137,15 @@ const Products = () => {
                         {FormatCash(item.sale_price.toString())} đ
                       </span>
                       <div className={styles.btn_cart}>
-                        <i className="fas fa-search"></i>
+                        <div
+                          onClick={() => history.push(`/edit/${item.id}`)}
+                          className={styles.edit}
+                        >
+                          <i className="fas fa-pen"></i>
+                        </div>
+                        <button className={styles.del}>
+                          <i className="fas fa-trash"></i>
+                        </button>
                       </div>
                     </div>
                   </div>
